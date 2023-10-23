@@ -3,8 +3,8 @@
 PokemonInfo::PokemonInfo(const ushort &id,
                          const ushort &dexNumber,
                          const QString &name,
-                         const TypeInfo::Type &primaryType,
-                         const TypeInfo::Type &secondaryType,
+                         const Info::Type &primaryType,
+                         const Info::Type &secondaryType,
                          const BaseStats &stats,
                          const QString &species,
                          const QString &description,
@@ -72,12 +72,12 @@ const QString PokemonInfo::name() const
 
 const QString PokemonInfo::primaryType() const
 {
-    return TypeInfo::toString(m_primaryType);
+    return Info::typeToString(m_primaryType);
 }
 
 const QString PokemonInfo::secondaryType() const
 {
-    return TypeInfo::toString(m_secondaryType);
+    return Info::typeToString(m_secondaryType);
 }
 
 const BaseStats PokemonInfo::baseStats() const
@@ -93,5 +93,32 @@ const QString PokemonInfo::species() const
 const QString PokemonInfo::description() const
 {
     return m_description;
+}
+
+QString PokemonInfo::genderToString(const Gender gender)
+{
+    switch (gender) {
+    case Gender::Genderless:
+        return QStringLiteral("Genderless");
+    case Gender::Male:
+        return QStringLiteral("Male");
+    case Gender::Female:
+        return QStringLiteral("Female");
+    case Gender::Invalid:
+    default:
+        return QStringLiteral("Invalid");
+    }
+}
+
+PokemonInfo::Gender PokemonInfo::stringToGender(const QString &gender)
+{
+    if (gender == QStringLiteral("Genderless"))
+        return Gender::Genderless;
+    if (gender == QStringLiteral("Male"))
+        return Gender::Male;
+    if (gender == QStringLiteral("Female"))
+        return Gender::Female;
+
+    return Gender::Invalid;
 }
 

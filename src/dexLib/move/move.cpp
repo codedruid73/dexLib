@@ -2,7 +2,7 @@
 
 Move::Move(const QString &name,
            const Category &category,
-           const TypeInfo::Type &type,
+           const Info::Type &type,
            const ushort &power,
            const ushort &accuracy,
            const ushort &pp,
@@ -45,7 +45,7 @@ Move::Category Move::category() const
     return m_category;
 }
 
-TypeInfo::Type Move::type() const
+Info::Type Move::type() const
 {
     return m_type;
 }

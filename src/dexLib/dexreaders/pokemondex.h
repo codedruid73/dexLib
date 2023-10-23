@@ -2,6 +2,7 @@
 
 // Qt headers
 #include <QObject>
+#include <QDir>
 
 // library headers
 #include "dexlib_export.h"
@@ -14,15 +15,17 @@ class DEXLIB_EXPORT PokemonDex : public QObject
     Q_DISABLE_COPY(PokemonDex)
 
 public:
-    PokemonDex(QObject *parent = nullptr);
+    PokemonDex(const QDir &dir, QObject *parent = nullptr);
     PokemonDex(PokemonDex &other) = delete;
     ~PokemonDex();
 
     bool read();
     QList<QSharedPointer<PokemonInfo>> dex() const;
-    const QStringList names() const;
+    QSharedPointer<PokemonInfo> info(const QString &name) const; // TODO: form
+    const QStringList list() const;
 
 private:
+    QDir m_directory;
     QList<QSharedPointer<PokemonInfo>> m_dex;
 
     QSharedPointer<PokemonInfo> create(const QJsonObject &object);

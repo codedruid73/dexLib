@@ -7,7 +7,7 @@
 
 // library headers
 #include "dexlib_export.h"
-#include "typeinfo.h"
+#include "info.h"
 #include "basestats.h"
 
 //class BaseStats;
@@ -16,11 +16,19 @@
 class DEXLIB_EXPORT PokemonInfo{
 
 public:
+    enum class Gender
+    {
+        Invalid = 0,
+        Genderless,
+        Male,
+        Female
+    };
+
     explicit PokemonInfo(const ushort              &id,
                          const ushort              &dexNumber,
                          const QString             &name,
-                         const TypeInfo::Type      &primaryType,
-                         const TypeInfo::Type      &secondaryType,
+                         const Info::Type          &primaryType,
+                         const Info::Type          &secondaryType,
                          const BaseStats           &stats,
                          const QString             &species,
                          const QString             &description,
@@ -38,12 +46,15 @@ public:
     const QString species() const;
     const QString description() const;
 
+    static QString genderToString(const Gender gender);
+    static Gender stringToGender(const QString &gender);
+
 private:
     const ushort  m_uid;
     const ushort  m_dexNumber;
     const QString m_name;
-    const TypeInfo::Type m_primaryType;
-    const TypeInfo::Type m_secondaryType;
+    const Info::Type m_primaryType;
+    const Info::Type m_secondaryType;
     const BaseStats m_baseStats;
     const QString m_species;
     const QString m_description;

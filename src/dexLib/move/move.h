@@ -6,7 +6,7 @@
 
 // library headers
 #include "dexlib_export.h"
-#include "typeinfo.h"
+#include "info.h"
 
 class DEXLIB_EXPORT Move{
 
@@ -15,12 +15,12 @@ public:
     {
         Physical,
         Special,
-        NonEDamaging
+        NonDamaging
     };
 
     explicit Move(const QString         &name,
                   const Category        &category,
-                  const TypeInfo::Type  &type,
+                  const Info::Type      &type,
                   const ushort          &power,
                   const ushort          &accuracy,
                   const ushort          &pp,
@@ -30,7 +30,7 @@ public:
 
     QString         name() const;
     Category        category() const;
-    TypeInfo::Type  type() const;
+    Info::Type      type() const;
     ushort          power() const;
     ushort          accuracy() const;
     ushort          pp() const;
@@ -39,7 +39,7 @@ public:
 private:
     const QString         m_name;
     const Category        m_category;
-    const TypeInfo::Type  m_type;
+    const Info::Type      m_type;
     const ushort          m_power;
     const ushort          m_accuracy;
     const ushort          m_pp;

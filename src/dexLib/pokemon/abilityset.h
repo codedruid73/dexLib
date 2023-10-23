@@ -4,7 +4,7 @@
 #include <QSharedPointer>
 
 // library headers
-#include "abilityinfo.h"
+#include "ability.h"
 
 class AbilitySet
 {

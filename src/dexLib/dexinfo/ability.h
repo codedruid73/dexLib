@@ -6,14 +6,14 @@
 // library headers
 #include "dexlib_export.h"
 
-class DEXLIB_EXPORT AbilityInfo
+class DEXLIB_EXPORT Ability
 {
 
 public:
-    explicit AbilityInfo(const QString &name,
-                         const QString &description);
-    AbilityInfo(const AbilityInfo &other) noexcept;
-    ~AbilityInfo();
+    explicit Ability(const QString &name,
+                     const QString &description);
+    Ability(const Ability &other) noexcept;
+    ~Ability();
 
     QString name() const;
     QString description() const;

@@ -7,8 +7,10 @@
 #include <QDir>
 #include <QCoreApplication>
 
-PokemonDex::PokemonDex(QObject *parent):
+PokemonDex::PokemonDex(const QDir &dir,
+                       Object *parent):
     QObject(parent),
+    m_directory(dir),
     m_dex()
 {
 
@@ -23,9 +25,9 @@ bool PokemonDex::read()
 {
     m_dex.clear();
     // TODO: change to resource
-    const QString filename = QDir(QCoreApplication::applicationDirPath()).absoluteFilePath("pokedex.json");            // (Windows ex.) App executable path
+    const QString filename = m_directory.absoluteFilePath("pokedex.json");            // (Windows ex.) App executable path
 
-    QJsonArray array = Reader::readJson(filename);
+    QJsonArray array = Reader::readJsonArray(filename);
 
     for (const QJsonValue &value : array)
     {
@@ -47,7 +49,22 @@ QList<QSharedPointer<PokemonInfo>> PokemonDex::dex() const
     return m_dex;
 }
 
-const QStringList PokemonDex::names() const
+QSharedPointer<PokemonInfo> PokemonDex::info(const QString &name) const
+{
+    // optimize !!!
+    for (const QSharedPointer<PokemonInfo> &inf : m_dex)
+    {
+        if (inf->name() == name)
+        {
+            return inf;
+        }
+    }
+
+    // warning
+    return QSharedPointer<PokemonInfo>();
+}
+
+const QStringList PokemonDex::list() const
 {
     QStringList result;
 
@@ -66,11 +83,11 @@ QSharedPointer<PokemonInfo> PokemonDex::create(const QJsonObject &object)
     const QString name     = object.value("name").toObject().value("english").toString();
 
     const QStringList types = object.value("type").toVariant().toStringList();
-    TypeInfo::Type primaryType = TypeInfo::toType(types.at(0));
-    TypeInfo::Type secondaryType = TypeInfo::Type::NONE;
+    Info::Type primaryType = Info::stringToType(types.at(0));
+    Info::Type secondaryType = Info::Type::NONE;
     if (types.size() > 1)
     {
-        secondaryType = TypeInfo::toType(types.at(1));
+        secondaryType = Info::stringToType(types.at(1));
     }
 
     // basestats

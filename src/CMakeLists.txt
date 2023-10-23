@@ -1,44 +1,49 @@
 # DexLib
 set(DexLib_PUBLIC_HEADERS
-    dexLib/item/item.h
-
+    dexLib/dexinfo/ability.h
     dexLib/dexinfo/basestats.h
-    dexLib/pokemon/pokemoninfo.h
-    dexLib/dexinfo/abilityinfo.h
-    dexLib/dexinfo/typeinfo.h
+    dexLib/dexinfo/info.h
+    dexLib/dexinfo/nature.h
+    dexLib/dexinfo/type.h
 
-    dexLib/pokemon/abilityset.h
-
-    dexLib/dexreaders/pokemondex.h
-    dexLib/dexreaders/reader.h
-
+    dexLib/item/item.h
     dexLib/move/move.h
 
-    dexLib/pokemon/pokemon.h
+    dexLib/dexreaders/pokemondex.h
+    dexLib/dexreaders/typedex.h
+    dexLib/dexreaders/pokemonreader.h
+    dexLib/dexreaders/reader.h
 
+    dexLib/pokemon/abilityset.h
+    dexLib/pokemon/pokemon.h
+    dexLib/pokemon/valueset.h
+
+    dexLib/pokemon/pokemoninfo.h
 )
 set(DexLib_PRIVATE_HEADERS
     dexLib/dexinfo/basestats_p.h
 )
 set(DexLib_SOURCES
-    dexLib/item/item.cpp
-
+    dexLib/dexinfo/ability.cpp
     dexLib/dexinfo/basestats.cpp
     dexLib/dexinfo/basestats_p.cpp
-    dexLib/pokemon/pokemoninfo.cpp
-    dexLib/dexinfo/abilityinfo.cpp
-    dexLib/dexinfo/typeinfo.cpp
+    dexLib/dexinfo/info.cpp
+    dexLib/dexinfo/nature.cpp
+    dexLib/dexinfo/type.cpp
 
-    dexLib/dexreaders/pokemondex.cpp
-    dexLib/dexreaders/reader.cpp
-
-    #dexLib/pokemon/pkmtype.cpp
-
-    dexLib/pokemon/abilityset.cpp
-
+    dexLib/item/item.cpp
     dexLib/move/move.cpp
 
+    dexLib/dexreaders/pokemondex.cpp
+    dexLib/dexreaders/typedex.cpp
+    dexLib/dexreaders/pokemonreader.cpp
+    dexLib/dexreaders/reader.cpp
+
+    dexLib/pokemon/abilityset.cpp
     dexLib/pokemon/pokemon.cpp
+    dexLib/pokemon/valueset.cpp
+
+    dexLib/pokemon/pokemoninfo.cpp
 )
 
 createlib(
