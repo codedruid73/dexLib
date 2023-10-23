@@ -13,7 +13,7 @@ QSharedPointer<Pokemon> PokemonReader::read(const QString &filepath)
     const QJsonObject object = Reader::readJsonObject(filepath);
 
     // check how not te reread this every thime!
-    PokemonDex dex;
+    PokemonDex dex(QDir("P:/projects/data"));
     dex.read();
 
     const QString name = object.value("name").toString();

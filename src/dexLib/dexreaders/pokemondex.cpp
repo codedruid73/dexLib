@@ -5,10 +5,9 @@
 
 #include <QJsonObject>
 #include <QDir>
-#include <QCoreApplication>
 
 PokemonDex::PokemonDex(const QDir &dir,
-                       Object *parent):
+                       QObject *parent):
     QObject(parent),
     m_directory(dir),
     m_dex()

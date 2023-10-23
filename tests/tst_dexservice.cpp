@@ -43,7 +43,7 @@ void DexServiceTest::test()
     QCOMPARE(item3.type(), Item::Type::KeyItems);
     QCOMPARE(item3.description(), "some item");
 
-    QSharedPointer<PokemonDex> dex(new PokemonDex);
+    QSharedPointer<PokemonDex> dex(new PokemonDex(QDir("P:/projects/data")));
     dex->read();
 
     qDebug() << dex->dex().size();
@@ -60,7 +60,7 @@ void DexServiceTest::test()
 
 void DexServiceTest::testPkmReadWrite()
 {
-    QSharedPointer<PokemonDex> dex(new PokemonDex);
+    QSharedPointer<PokemonDex> dex(new PokemonDex(QDir("P:/projects/data")));
     dex->read();
     QSharedPointer<PokemonInfo> info = dex->info("Gardevoir");
 

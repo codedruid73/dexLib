@@ -10,20 +10,20 @@ class AbilitySet
 {
 
 public:
-    AbilitySet(const  QSharedPointer<AbilityInfo> &primary,
-               const  QSharedPointer<AbilityInfo> &secondary,
-               const  QSharedPointer<AbilityInfo> &hidden);
+    AbilitySet(const  QSharedPointer<Ability> &primary,
+               const  QSharedPointer<Ability> &secondary,
+               const  QSharedPointer<Ability> &hidden);
 
     bool hasSecondary() const;
 
-    QSharedPointer<AbilityInfo> primary() const;
-    QSharedPointer<AbilityInfo> secondary() const;
-    QSharedPointer<AbilityInfo> hidden() const;
+    QSharedPointer<Ability> primary() const;
+    QSharedPointer<Ability> secondary() const;
+    QSharedPointer<Ability> hidden() const;
 
 private:
-    const QSharedPointer<AbilityInfo> m_primary;
-    const QSharedPointer<AbilityInfo> m_secondary;
-    const QSharedPointer<AbilityInfo> m_hidden;
+    const QSharedPointer<Ability> m_primary;
+    const QSharedPointer<Ability> m_secondary;
+    const QSharedPointer<Ability> m_hidden;
     const bool m_hasSecond;
 
 };

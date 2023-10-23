@@ -63,6 +63,7 @@ public:
 
     static QString typeToString(const Type &type);
     static Type    stringToType(const QString &type);
+    static QList<Type> stringListToTypes(const QStringList &types);
 
     static QString natureToString(const Nature &nature);
     static Nature stringToNature(const QString &nature);
