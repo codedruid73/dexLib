@@ -13,9 +13,10 @@ class DEXLIB_EXPORT Move{
 public:
     enum class Category
     {
-        Physical,
+        Physical = 0,
         Special,
-        NonDamaging
+        NonDamaging,
+        Unknown
     };
 
     explicit Move(const QString         &name,
@@ -35,6 +36,9 @@ public:
     ushort          accuracy() const;
     ushort          pp() const;
     QString         description() const;
+
+    static const QString categoryToString(const Category &category);
+    static const Category stringToCategory(const QString & str);
 
 private:
     const QString         m_name;

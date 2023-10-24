@@ -1,12 +1,12 @@
 #include "nature.h"
 
 Nature::Nature(const Info::Nature nature,
-               const float &hp,
-               const float &att,
-               const float &def,
-               const float &sAtt,
-               const float &sDef,
-               const float &speed,
+               const double &hp,
+               const double &att,
+               const double &def,
+               const double &sAtt,
+               const double &sDef,
+               const double &speed,
                const QString &summary):
     m_nature(nature),
     m_hp(hp),

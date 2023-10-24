@@ -11,14 +11,15 @@ class DEXLIB_EXPORT Item{
 public:
     enum class Type
     {
-        PokeBalls,
+        PokeBalls = 0,
         Medicine,
         BattleItems,
         GeneralItems,
         HoldItems,
         KeyItems,
         Berries,
-        Machines
+        Machines,
+        Unknown
     };
 
     explicit Item(const QString &name,
@@ -30,6 +31,9 @@ public:
     QString name() const;
     Type    type() const;
     QString description() const;
+
+    static const QString typeToString(const Type &type);
+    static const Type stringToType(const QString &str);
 
 private:
     const QString   m_name;

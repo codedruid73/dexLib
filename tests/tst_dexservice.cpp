@@ -7,6 +7,12 @@
 #include "pokemon.h"
 #include "pokemonreader.h"
 
+#include "abilitydex.h"
+#include "itemdex.h"
+#include "movedex.h"
+#include "naturedex.h"
+#include "typedex.h"
+
 class DexServiceTest : public QObject
 {
     Q_OBJECT
@@ -19,6 +25,7 @@ public:
 private Q_SLOTS:
     void test();
     void testPkmReadWrite();
+    void testDex();
 };
 
 
@@ -94,6 +101,21 @@ void DexServiceTest::testPkmReadWrite()
     qDebug() << "pkm1 " << pkm->uuid();
     qDebug() << "pkm2 " << pkm2->uuid();
     qDebug() << "pkm3 " << pkm3->uuid();
+}
+
+void DexServiceTest::testDex()
+{
+    //AbilityDex  abilityDex(QDir("P:/projects/data"));
+    //ItemDex     itemDex(QDir("P:/projects/data"));
+    MoveDex     moveDex(QDir("P:/projects/data"));
+    //NatureDex   natureDex(QDir("P:/projects/data"));
+    //TypeDex     typeDex(QDir("P:/projects/data"));
+
+    //abilityDex.read();
+    moveDex.read();
+
+    //qDebug() << abilityDex.list();
+    qDebug() << moveDex.list();
 }
 
 QTEST_GUILESS_MAIN(DexServiceTest)

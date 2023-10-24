@@ -1,30 +1,24 @@
 #pragma once
 
 // Qt headers
-#include <QObject>
 #include <QDir>
 
 // library headers
 #include "dexlib_export.h"
+#include "dex.h"
 
 class Type;
 
-class DEXLIB_EXPORT TypeDex : public QObject
+class DEXLIB_EXPORT TypeDex : public Dex<Type>
 {
-    Q_OBJECT
-    Q_DISABLE_COPY(TypeDex)
 
 public:
-    TypeDex(const QDir &dir, QObject *parent = nullptr);
-    TypeDex(TypeDex &other) = delete;
+    explicit TypeDex(const QDir &dir);
+    TypeDex(const TypeDex &other) = delete;
     ~TypeDex();
 
-    bool read();
-
 private:
-    QDir m_dir;
-    QList<QSharedPointer<Type>> m_types;
-
-    QSharedPointer<Type> create(const QJsonObject &object);
+    virtual QSharedPointer<Type> create(const QJsonObject &object);
+    virtual const QString key(const QJsonObject &object);
 };
 

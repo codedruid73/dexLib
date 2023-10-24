@@ -61,12 +61,31 @@ public:
         ERROR
     };
 
+    enum class Stats {
+        HP = 0,
+        Att,
+        Def,
+        SAtt,
+        SDef,
+        Speed
+    };
+
+    enum class Value {
+        Base = 0,
+        IV,
+        EV
+    };
+
     static QString typeToString(const Type &type);
     static Type    stringToType(const QString &type);
     static QList<Type> stringListToTypes(const QStringList &types);
 
     static QString natureToString(const Nature &nature);
     static Nature stringToNature(const QString &nature);
+
+    static ushort maxValue(const Value &value);
+
+    static QString displayName(Stats & stats);
 
     static QStringList types();
     static QStringList natures();

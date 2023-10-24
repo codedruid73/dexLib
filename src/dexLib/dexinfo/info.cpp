@@ -1,5 +1,7 @@
 #include "info.h"
 
+#include <limits>
+
 #include <QStringList>
 
 Info::Info()
@@ -213,6 +215,39 @@ Info::Nature Info::stringToNature(const QString &nature)
         return Nature::Timid;
 
     return Nature::ERROR;
+}
+
+ushort Info::maxValue(const Value &value)
+{
+    switch (value) {
+    case Value::IV:
+        return 31;
+    case Value::EV:
+        return 252;
+    case Value::Base:
+    default:
+        return std::numeric_limits<ushort>::max();
+    }
+}
+
+QString Info::displayName(Stats & stats)
+{
+    switch (stats) {
+    case Stats::HP:
+        return QStringLiteral("Hit Points");
+    case Stats::Att:
+        return QStringLiteral("Attack");
+    case Stats::Def:
+        return QStringLiteral("Defense");
+    case Stats::SAtt:
+        return QStringLiteral("Special Attack");
+    case Stats::SDef:
+        return QStringLiteral("Special Defense");
+    case Stats::Speed:
+        return QStringLiteral("Speed");
+    default:
+        return QStringLiteral("");
+    }
 }
 
 QStringList Info::types()

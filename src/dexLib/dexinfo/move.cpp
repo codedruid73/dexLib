@@ -69,3 +69,30 @@ QString Move::description() const
 {
     return m_description;
 }
+
+const QString Move::categoryToString(const Category &category)
+{
+    switch (category) {
+    case Category::Physical:
+        return QStringLiteral("Physical");
+    case Category::Special:
+        return QStringLiteral("Special");
+    case Category::NonDamaging:
+        return QStringLiteral("Non-Damaging");
+    case Category::Unknown:
+    default:
+        return QStringLiteral("Unknown");
+    }
+}
+
+const Move::Category Move::stringToCategory(const QString &str)
+{
+    if (str == QStringLiteral("Physical"))
+        return Category::Physical;
+    if (str == QStringLiteral("Special"))
+        return Category::Special;
+    if (str == QStringLiteral("Non-Damaging"))
+        return Category::NonDamaging;
+
+    return Category::Unknown;
+}
