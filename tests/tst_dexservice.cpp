@@ -27,18 +27,16 @@ void DexServiceTest::test()
 {
     // P:\projects\data
 
-    Item item(123, "name1", Item::Type::KeyItems, "some item");
+    Item item("name1", Item::Type::KeyItems, "some item");
 
     Item item2(item);
 
-    QCOMPARE(item2.id(), 123);
     QCOMPARE(item2.name(), "name1");
     QCOMPARE(item2.type(), Item::Type::KeyItems);
     QCOMPARE(item2.description(), "some item");
 
-    Item item3(Item(123, "name1", Item::Type::KeyItems, "some item"));
+    Item item3(Item("name1", Item::Type::KeyItems, "some item"));
 
-    QCOMPARE(item3.id(), 123);
     QCOMPARE(item3.name(), "name1");
     QCOMPARE(item3.type(), Item::Type::KeyItems);
     QCOMPARE(item3.description(), "some item");

@@ -21,20 +21,17 @@ public:
         Machines
     };
 
-    explicit Item(const ushort  &id,
-                  const QString &name,
+    explicit Item(const QString &name,
                   const Type    &type,
                   const QString &description);
     Item(const Item &other) noexcept;
     ~Item();
 
-    ushort  id() const;
     QString name() const;
     Type    type() const;
     QString description() const;
 
 private:
-    const ushort    m_id;
     const QString   m_name;
     const Type      m_type;
     const QString   m_description;

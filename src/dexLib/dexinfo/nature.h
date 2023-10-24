@@ -1,5 +1,8 @@
 #pragma once
 
+// Qt headers
+#include <QString>
+
 // library headers
 #include "dexlib_export.h"
 #include "info.h"
@@ -12,7 +15,8 @@ class DEXLIB_EXPORT Nature
                     const float &def,
                     const float &sAtt,
                     const float &sDef,
-                    const float &speed);
+                    const float &speed,
+                    const QString &summary);
     ~Nature();
 
 public:
@@ -26,4 +30,5 @@ private:
     const float m_sAtt;
     const float m_sDef;
     const float m_speed;
+    const QString m_summary;
 };
