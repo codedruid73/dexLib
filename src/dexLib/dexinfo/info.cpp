@@ -96,6 +96,17 @@ Info::Type Info::stringToType(const QString &type)
     return Type::NONE;
 }
 
+QList<Info::Type> Info::stringListToTypes(const QStringList &types)
+{
+    QList<Info::Type> infoTypes;
+    for (const QString &t : types)
+    {
+        infoTypes << stringToType(t);
+    }
+
+    return infoTypes;
+}
+
 QString Info::natureToString(const Nature &nature)
 {
     switch (nature) {

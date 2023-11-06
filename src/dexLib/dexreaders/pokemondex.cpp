@@ -1,16 +1,11 @@
 #include "pokemondex.h"
 
-#include "pokemoninfo.h"
-#include "reader.h"
-
 #include <QJsonObject>
-#include <QDir>
 
-PokemonDex::PokemonDex(const QDir &dir,
-                       QObject *parent):
-    QObject(parent),
-    m_directory(dir),
-    m_dex()
+#include "pokemoninfo.h"
+
+PokemonDex::PokemonDex(const QDir &dir):
+    Dex<PokemonInfo>(dir.absoluteFilePath("pokedex.json"))
 {
 
 }
@@ -20,64 +15,9 @@ PokemonDex::~PokemonDex()
 
 }
 
-bool PokemonDex::read()
-{
-    m_dex.clear();
-    // TODO: change to resource
-    const QString filename = m_directory.absoluteFilePath("pokedex.json");            // (Windows ex.) App executable path
-
-    QJsonArray array = Reader::readJsonArray(filename);
-
-    for (const QJsonValue &value : array)
-    {
-        if (value.isObject())
-        {
-            m_dex << create(value.toObject());
-        }
-        else
-        {
-            qWarning() << "No Json object";
-        }
-    }
-
-    return true;
-}
-
-QList<QSharedPointer<PokemonInfo>> PokemonDex::dex() const
-{
-    return m_dex;
-}
-
-QSharedPointer<PokemonInfo> PokemonDex::info(const QString &name) const
-{
-    // optimize !!!
-    for (const QSharedPointer<PokemonInfo> &inf : m_dex)
-    {
-        if (inf->name() == name)
-        {
-            return inf;
-        }
-    }
-
-    // warning
-    return QSharedPointer<PokemonInfo>();
-}
-
-const QStringList PokemonDex::list() const
-{
-    QStringList result;
-
-    for(const QSharedPointer<PokemonInfo> &info : m_dex)
-    {
-        result << info->name();
-    }
-
-    return result;
-}
-
 QSharedPointer<PokemonInfo> PokemonDex::create(const QJsonObject &object)
 {
-    const ushort id        = object.value("id").toInt(); // furture change to include forms
+    const ushort id        = object.value("id").toInt(); // future: change to include forms
     const ushort dexNumber = object.value("id").toInt();
     const QString name     = object.value("name").toObject().value("english").toString();
 
@@ -130,4 +70,9 @@ QSharedPointer<PokemonInfo> PokemonDex::create(const QJsonObject &object)
                                                        description,
                                                        abilities));
 
+}
+
+const QString PokemonDex::key(const QJsonObject &object)
+{
+    return object.value("name").toObject().value("english").toString();
 }

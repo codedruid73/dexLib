@@ -20,7 +20,7 @@ QSharedPointer<Pokemon> PokemonReader::read(const QString &filepath)
     const QString uuid = object.value("uuid").toString();
 
     // form;
-    const QSharedPointer<PokemonInfo> info = dex.info(name);
+    const QSharedPointer<PokemonInfo> info = dex.entry(name);
     QSharedPointer<Pokemon> pkm(new Pokemon(info, uuid));
 
     pkm->setLevel(object.value("level").toInt());

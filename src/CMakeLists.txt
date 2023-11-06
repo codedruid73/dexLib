@@ -39,7 +39,7 @@ set(DexLib_SOURCES
     dexLib/dexinfo/pokemoninfo.cpp
     dexLib/dexinfo/type.cpp
 
-    dexLib/dexreaders/dex.cpp
+    #dexLib/dexreaders/dex.cpp
     dexLib/dexreaders/abilitydex.cpp
     dexLib/dexreaders/itemdex.cpp
     dexLib/dexreaders/movedex.cpp
